@@ -1,0 +1,901 @@
+{
+  "datasets": [
+    {
+      "name": "941a981c",
+      "displayName": "ingresos_por_categoria",
+      "queryLines": [
+        "SELECT * FROM catalog_project.golden.ingresos_por_categoria"
+      ]
+    },
+    {
+      "name": "fe4c27c8",
+      "displayName": "ingresos_por_suscripcion",
+      "queryLines": [
+        "SELECT * FROM catalog_project.golden.ingresos_por_suscripcion"
+      ]
+    },
+    {
+      "name": "be3c4e96",
+      "displayName": "ingresos_por_genero",
+      "queryLines": [
+        "SELECT * FROM catalog_project.golden.ingresos_por_genero"
+      ]
+    },
+    {
+      "name": "831d6d4b",
+      "displayName": "ingresos_por_estado",
+      "queryLines": [
+        "SELECT * FROM catalog_project.golden.ingresos_por_estado"
+      ]
+    }
+  ],
+  "pages": [
+    {
+      "name": "62140a1d",
+      "displayName": "Untitled page",
+      "layout": [
+        {
+          "widget": {
+            "name": "d61e9b28",
+            "queries": [
+              {
+                "name": "main_query",
+                "query": {
+                  "datasetName": "941a981c",
+                  "fields": [
+                    {
+                      "name": "sum(total_ingresos)",
+                      "expression": "SUM(`total_ingresos`)"
+                    },
+                    {
+                      "name": "customer_category",
+                      "expression": "`customer_category`"
+                    },
+                    {
+                      "name": "total_ingresos",
+                      "expression": "`total_ingresos`"
+                    }
+                  ],
+                  "disaggregated": false
+                }
+              }
+            ],
+            "spec": {
+              "version": 3,
+              "widgetType": "pie",
+              "encodings": {
+                "angle": {
+                  "fieldName": "sum(total_ingresos)",
+                  "scale": {
+                    "type": "quantitative"
+                  },
+                  "displayName": "Ingresos por Categoria"
+                },
+                "color": {
+                  "fieldName": "customer_category",
+                  "displayName": "Categorias",
+                  "scale": {
+                    "type": "categorical"
+                  }
+                },
+                "label": {
+                  "show": true
+                },
+                "extra": [
+                  {
+                    "fieldName": "total_ingresos"
+                  }
+                ]
+              }
+            }
+          },
+          "position": {
+            "x": 0,
+            "y": 6,
+            "width": 9,
+            "height": 6
+          }
+        },
+        {
+          "widget": {
+            "name": "9c118cb3",
+            "multilineTextboxSpec": {
+              "lines": [
+                "<span style=\"text-align:center;display:block;\"><span style=\"font-size:36px;line-height:1.5\">Ingresos Por Categoria</span></span>\n",
+                "<p>&nbsp;</p>\n"
+              ]
+            }
+          },
+          "position": {
+            "x": 0,
+            "y": 0,
+            "width": 12,
+            "height": 2
+          }
+        },
+        {
+          "widget": {
+            "name": "in1",
+            "queries": [
+              {
+                "name": "main_query",
+                "query": {
+                  "datasetName": "941a981c",
+                  "fields": [
+                    {
+                      "name": "customer_category",
+                      "expression": "`customer_category`"
+                    },
+                    {
+                      "name": "ticket_promedio",
+                      "expression": "`ticket_promedio`"
+                    },
+                    {
+                      "name": "total_ingresos",
+                      "expression": "`total_ingresos`"
+                    },
+                    {
+                      "name": "ventas",
+                      "expression": "`ventas`"
+                    }
+                  ],
+                  "disaggregated": true
+                }
+              }
+            ],
+            "spec": {
+              "version": 2,
+              "frame": {
+                "showTitle": false,
+                "title": "In"
+              },
+              "widgetType": "table",
+              "encodings": {
+                "columns": [
+                  {
+                    "fieldName": "customer_category",
+                    "displayName": "Categoria"
+                  },
+                  {
+                    "fieldName": "ticket_promedio",
+                    "displayName": "Ticket Promedio"
+                  },
+                  {
+                    "fieldName": "total_ingresos",
+                    "displayName": "Ingresos"
+                  },
+                  {
+                    "fieldName": "ventas",
+                    "displayName": "Ventas"
+                  }
+                ]
+              }
+            }
+          },
+          "position": {
+            "x": 0,
+            "y": 2,
+            "width": 9,
+            "height": 4
+          }
+        },
+        {
+          "widget": {
+            "name": "total-ingresos",
+            "queries": [
+              {
+                "name": "main_query",
+                "query": {
+                  "datasetName": "941a981c",
+                  "fields": [
+                    {
+                      "name": "sum(total_ingresos)",
+                      "expression": "SUM(`total_ingresos`)"
+                    }
+                  ],
+                  "disaggregated": false
+                }
+              }
+            ],
+            "spec": {
+              "version": 2,
+              "frame": {
+                "showTitle": true,
+                "title": "Total Ingresos"
+              },
+              "widgetType": "counter",
+              "encodings": {
+                "value": {
+                  "fieldName": "sum(total_ingresos)",
+                  "format": {
+                    "type": "number-plain",
+                    "abbreviation": "none",
+                    "decimalPlaces": {
+                      "type": "all"
+                    },
+                    "hideGroupSeparator": false
+                  }
+                }
+              }
+            }
+          },
+          "position": {
+            "x": 9,
+            "y": 2,
+            "width": 3,
+            "height": 3
+          }
+        },
+        {
+          "widget": {
+            "name": "total-ventas",
+            "queries": [
+              {
+                "name": "main_query",
+                "query": {
+                  "datasetName": "941a981c",
+                  "fields": [
+                    {
+                      "name": "sum(ventas)",
+                      "expression": "SUM(`ventas`)"
+                    }
+                  ],
+                  "disaggregated": false
+                }
+              }
+            ],
+            "spec": {
+              "version": 2,
+              "frame": {
+                "showTitle": true,
+                "title": "Total Ventas"
+              },
+              "widgetType": "counter",
+              "encodings": {
+                "value": {
+                  "fieldName": "sum(ventas)"
+                }
+              }
+            }
+          },
+          "position": {
+            "x": 9,
+            "y": 5,
+            "width": 3,
+            "height": 3
+          }
+        },
+        {
+          "widget": {
+            "name": "49350806",
+            "multilineTextboxSpec": {
+              "lines": [
+                "<span style=\"text-align:center;display:block\"><span style=\"font-size: 36px;line-height: 1.5;\">Ingresos Por Estado</span></span>"
+              ]
+            }
+          },
+          "position": {
+            "x": 0,
+            "y": 12,
+            "width": 12,
+            "height": 2
+          }
+        },
+        {
+          "widget": {
+            "name": "d2a6357d",
+            "queries": [
+              {
+                "name": "main_query",
+                "query": {
+                  "datasetName": "831d6d4b",
+                  "fields": [
+                    {
+                      "name": "location",
+                      "expression": "`location`"
+                    },
+                    {
+                      "name": "sum(total_ingresos)",
+                      "expression": "SUM(`total_ingresos`)"
+                    },
+                    {
+                      "name": "sum(Clientes)",
+                      "expression": "SUM(`Clientes`)"
+                    }
+                  ],
+                  "disaggregated": false
+                }
+              }
+            ],
+            "spec": {
+              "version": 1,
+              "mark": {
+                "colors": [
+                  {
+                    "themeColorType": "visualizationColors",
+                    "position": 4
+                  },
+                  {
+                    "themeColorType": "visualizationColors",
+                    "position": 2
+                  },
+                  {
+                    "themeColorType": "visualizationColors",
+                    "position": 3
+                  },
+                  {
+                    "themeColorType": "visualizationColors",
+                    "position": 4
+                  },
+                  {
+                    "themeColorType": "visualizationColors",
+                    "position": 5
+                  },
+                  {
+                    "themeColorType": "visualizationColors",
+                    "position": 6
+                  },
+                  {
+                    "themeColorType": "visualizationColors",
+                    "position": 7
+                  },
+                  {
+                    "themeColorType": "visualizationColors",
+                    "position": 8
+                  },
+                  {
+                    "themeColorType": "visualizationColors",
+                    "position": 9
+                  },
+                  {
+                    "themeColorType": "visualizationColors",
+                    "position": 10
+                  }
+                ]
+              },
+              "widgetType": "choropleth-map",
+              "encodings": {
+                "color": {
+                  "fieldName": "location",
+                  "scale": {
+                    "type": "categorical"
+                  }
+                },
+                "extra": [
+                  {
+                    "fieldName": "sum(total_ingresos)",
+                    "displayName": "Total Ingresos"
+                  },
+                  {
+                    "fieldName": "sum(Clientes)",
+                    "displayName": "N° Clientes"
+                  }
+                ],
+                "region": {
+                  "regionType": "mapbox-v4-admin",
+                  "admin0": {
+                    "type": "value",
+                    "value": "United States",
+                    "geographicRole": "admin0-name"
+                  },
+                  "admin1": {
+                    "fieldName": "location",
+                    "type": "field",
+                    "geographicRole": "admin1-name"
+                  }
+                }
+              }
+            }
+          },
+          "position": {
+            "x": 0,
+            "y": 14,
+            "width": 12,
+            "height": 9
+          }
+        },
+        {
+          "widget": {
+            "name": "b7642d9c",
+            "multilineTextboxSpec": {
+              "lines": [
+                "<span style=\"text-align:center;display:block;\"><span style=\"font-size: 36px;line-height: 1.5;\">Ingresos Por Genero</span></span>"
+              ]
+            }
+          },
+          "position": {
+            "x": 0,
+            "y": 23,
+            "width": 6,
+            "height": 2
+          }
+        },
+        {
+          "widget": {
+            "name": "ingresos-mujeres",
+            "queries": [
+              {
+                "name": "main_query",
+                "query": {
+                  "datasetName": "be3c4e96",
+                  "fields": [
+                    {
+                      "name": "sum(total_ingresos)",
+                      "expression": "SUM(`total_ingresos`)"
+                    }
+                  ],
+                  "filters": [
+                    {
+                      "expression": "`gender` IN ('Female')"
+                    }
+                  ],
+                  "disaggregated": false
+                }
+              }
+            ],
+            "spec": {
+              "version": 2,
+              "frame": {
+                "showTitle": true,
+                "title": "Total Ingresos Mujeres",
+                "showDescription": false
+              },
+              "widgetType": "counter",
+              "encodings": {
+                "value": {
+                  "fieldName": "sum(total_ingresos)",
+                  "format": {
+                    "type": "number-plain",
+                    "abbreviation": "none",
+                    "decimalPlaces": {
+                      "type": "max",
+                      "places": 2
+                    },
+                    "significantFigures": {
+                      "type": "all"
+                    },
+                    "hideGroupSeparator": false
+                  }
+                }
+              }
+            }
+          },
+          "position": {
+            "x": 0,
+            "y": 25,
+            "width": 2,
+            "height": 3
+          }
+        },
+        {
+          "widget": {
+            "name": "018933ac",
+            "queries": [
+              {
+                "name": "main_query",
+                "query": {
+                  "datasetName": "be3c4e96",
+                  "fields": [
+                    {
+                      "name": "sum(total_ingresos)",
+                      "expression": "SUM(`total_ingresos`)"
+                    }
+                  ],
+                  "filters": [
+                    {
+                      "expression": "`gender` IN ('Male')"
+                    }
+                  ],
+                  "disaggregated": false
+                }
+              }
+            ],
+            "spec": {
+              "version": 2,
+              "frame": {
+                "showTitle": true,
+                "title": "Total Ingresos Hombres",
+                "showDescription": false
+              },
+              "widgetType": "counter",
+              "encodings": {
+                "value": {
+                  "fieldName": "sum(total_ingresos)",
+                  "format": {
+                    "type": "number-plain",
+                    "abbreviation": "none",
+                    "decimalPlaces": {
+                      "type": "max",
+                      "places": 2
+                    },
+                    "significantFigures": {
+                      "type": "all"
+                    },
+                    "hideGroupSeparator": false
+                  }
+                }
+              }
+            }
+          },
+          "position": {
+            "x": 0,
+            "y": 28,
+            "width": 2,
+            "height": 3
+          }
+        },
+        {
+          "widget": {
+            "name": "cb0db35c",
+            "queries": [
+              {
+                "name": "main_query",
+                "query": {
+                  "datasetName": "be3c4e96",
+                  "fields": [
+                    {
+                      "name": "sum(total_ingresos)",
+                      "expression": "SUM(`total_ingresos`)"
+                    }
+                  ],
+                  "disaggregated": false
+                }
+              }
+            ],
+            "spec": {
+              "version": 2,
+              "frame": {
+                "showTitle": true,
+                "title": "Total Ingresos",
+                "showDescription": false
+              },
+              "widgetType": "counter",
+              "encodings": {
+                "value": {
+                  "fieldName": "sum(total_ingresos)",
+                  "format": {
+                    "type": "number-plain",
+                    "abbreviation": "none",
+                    "decimalPlaces": {
+                      "type": "max",
+                      "places": 2
+                    },
+                    "significantFigures": {
+                      "type": "all"
+                    },
+                    "hideGroupSeparator": false
+                  }
+                }
+              }
+            }
+          },
+          "position": {
+            "x": 2,
+            "y": 25,
+            "width": 4,
+            "height": 6
+          }
+        },
+        {
+          "widget": {
+            "name": "87356cec",
+            "multilineTextboxSpec": {
+              "lines": [
+                "<span style=\"text-align:center;display:block\"><span style=\"font-size:36px;line-height:1.5\">Ingresos Por Suscripcion</span></span>"
+              ]
+            }
+          },
+          "position": {
+            "x": 6,
+            "y": 23,
+            "width": 6,
+            "height": 2
+          }
+        },
+        {
+          "widget": {
+            "name": "fbcca8cc",
+            "queries": [
+              {
+                "name": "main_query",
+                "query": {
+                  "datasetName": "fe4c27c8",
+                  "fields": [
+                    {
+                      "name": "sum(Clientes)",
+                      "expression": "SUM(`Clientes`)"
+                    }
+                  ],
+                  "filters": [
+                    {
+                      "expression": "`subscription_status` IN ('Yes')"
+                    }
+                  ],
+                  "disaggregated": false
+                }
+              }
+            ],
+            "spec": {
+              "version": 2,
+              "frame": {
+                "showTitle": true,
+                "title": "Personas Suscritas",
+                "showDescription": false
+              },
+              "widgetType": "counter",
+              "encodings": {
+                "value": {
+                  "fieldName": "sum(Clientes)",
+                  "format": {
+                    "type": "number-plain",
+                    "abbreviation": "none",
+                    "decimalPlaces": {
+                      "type": "max",
+                      "places": 2
+                    },
+                    "significantFigures": {
+                      "type": "all"
+                    },
+                    "hideGroupSeparator": false
+                  }
+                }
+              }
+            }
+          },
+          "position": {
+            "x": 6,
+            "y": 25,
+            "width": 2,
+            "height": 3
+          }
+        },
+        {
+          "widget": {
+            "name": "3876ae23",
+            "queries": [
+              {
+                "name": "main_query",
+                "query": {
+                  "datasetName": "fe4c27c8",
+                  "fields": [
+                    {
+                      "name": "sum(Clientes)",
+                      "expression": "SUM(`Clientes`)"
+                    }
+                  ],
+                  "filters": [
+                    {
+                      "expression": "`subscription_status` IN ('No')"
+                    }
+                  ],
+                  "disaggregated": false
+                }
+              }
+            ],
+            "spec": {
+              "version": 2,
+              "frame": {
+                "showTitle": true,
+                "title": "Personas No Suscritas",
+                "showDescription": false
+              },
+              "widgetType": "counter",
+              "encodings": {
+                "value": {
+                  "fieldName": "sum(Clientes)",
+                  "format": {
+                    "type": "number-plain",
+                    "abbreviation": "none",
+                    "decimalPlaces": {
+                      "type": "max",
+                      "places": 2
+                    },
+                    "significantFigures": {
+                      "type": "all"
+                    },
+                    "hideGroupSeparator": false
+                  }
+                }
+              }
+            }
+          },
+          "position": {
+            "x": 6,
+            "y": 28,
+            "width": 2,
+            "height": 3
+          }
+        },
+        {
+          "widget": {
+            "name": "ae7cbe1b",
+            "queries": [
+              {
+                "name": "main_query",
+                "query": {
+                  "datasetName": "fe4c27c8",
+                  "fields": [
+                    {
+                      "name": "sum(Clientes)",
+                      "expression": "SUM(`Clientes`)"
+                    }
+                  ],
+                  "filters": [
+                    {
+                      "expression": "`subscription_status` IN (`subscription_status`) OR TRUE"
+                    }
+                  ],
+                  "disaggregated": false
+                }
+              }
+            ],
+            "spec": {
+              "version": 2,
+              "frame": {
+                "showTitle": true,
+                "title": "Total Clientes ",
+                "showDescription": false
+              },
+              "widgetType": "counter",
+              "encodings": {
+                "value": {
+                  "fieldName": "sum(Clientes)",
+                  "format": {
+                    "type": "number-plain",
+                    "abbreviation": "none",
+                    "decimalPlaces": {
+                      "type": "max",
+                      "places": 2
+                    },
+                    "significantFigures": {
+                      "type": "all"
+                    },
+                    "hideGroupSeparator": false
+                  }
+                }
+              }
+            }
+          },
+          "position": {
+            "x": 8,
+            "y": 25,
+            "width": 4,
+            "height": 6
+          }
+        },
+        {
+          "widget": {
+            "name": "bfa4e2ea",
+            "queries": [
+              {
+                "name": "main_query",
+                "query": {
+                  "datasetName": "fe4c27c8",
+                  "fields": [
+                    {
+                      "name": "subscription_status",
+                      "expression": "`subscription_status`"
+                    },
+                    {
+                      "name": "Clientes",
+                      "expression": "`Clientes`"
+                    },
+                    {
+                      "name": "total_ingresos",
+                      "expression": "`total_ingresos`"
+                    },
+                    {
+                      "name": "ticket_promedio",
+                      "expression": "`ticket_promedio`"
+                    }
+                  ],
+                  "disaggregated": true
+                }
+              }
+            ],
+            "spec": {
+              "version": 2,
+              "widgetType": "table",
+              "encodings": {
+                "columns": [
+                  {
+                    "fieldName": "subscription_status",
+                    "displayName": "Estado Suscripcion"
+                  },
+                  {
+                    "fieldName": "Clientes",
+                    "displayName": "N° Clientes"
+                  },
+                  {
+                    "fieldName": "total_ingresos",
+                    "displayName": "Ingresos"
+                  },
+                  {
+                    "fieldName": "ticket_promedio",
+                    "displayName": "Tocket Promedio"
+                  }
+                ]
+              }
+            }
+          },
+          "position": {
+            "x": 6,
+            "y": 31,
+            "width": 6,
+            "height": 3
+          }
+        },
+        {
+          "widget": {
+            "name": "47438b4e",
+            "queries": [
+              {
+                "name": "main_query",
+                "query": {
+                  "datasetName": "be3c4e96",
+                  "fields": [
+                    {
+                      "name": "gender",
+                      "expression": "`gender`"
+                    },
+                    {
+                      "name": "Clientes",
+                      "expression": "`Clientes`"
+                    },
+                    {
+                      "name": "total_ingresos",
+                      "expression": "`total_ingresos`"
+                    },
+                    {
+                      "name": "ticket_promedio",
+                      "expression": "`ticket_promedio`"
+                    }
+                  ],
+                  "disaggregated": true
+                }
+              }
+            ],
+            "spec": {
+              "version": 2,
+              "widgetType": "table",
+              "encodings": {
+                "columns": [
+                  {
+                    "fieldName": "gender",
+                    "displayName": "Genero"
+                  },
+                  {
+                    "fieldName": "Clientes",
+                    "displayName": "N° Clientes"
+                  },
+                  {
+                    "fieldName": "total_ingresos",
+                    "displayName": "Ingresos"
+                  },
+                  {
+                    "fieldName": "ticket_promedio",
+                    "displayName": "Ticket Promedio"
+                  }
+                ]
+              }
+            }
+          },
+          "position": {
+            "x": 0,
+            "y": 31,
+            "width": 6,
+            "height": 3
+          }
+        }
+      ],
+      "pageType": "PAGE_TYPE_CANVAS",
+      "layoutVersion": "GRID_V1"
+    }
+  ],
+  "uiSettings": {
+    "theme": {
+      "widgetHeaderAlignment": "ALIGNMENT_UNSPECIFIED"
+    },
+    "applyModeEnabled": false
+  }
+}
